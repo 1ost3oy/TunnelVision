@@ -3,3 +3,6 @@ Application Data/
 Cookies/
 .vscode/extensions/
 *.jtx
+node_modules/
+.next/
+.env
