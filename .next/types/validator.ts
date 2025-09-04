@@ -65,6 +65,24 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   handler satisfies RouteHandlerConfig<"/api/actions/ping-tunnel">
 }
 
+// Validate ../../src/app/api/ai/analysis/route.ts
+{
+  const handler = {} as typeof import("../../src/app/api/ai/analysis/route.js")
+  handler satisfies RouteHandlerConfig<"/api/ai/analysis">
+}
+
+// Validate ../../src/app/api/ai/chat/route.ts
+{
+  const handler = {} as typeof import("../../src/app/api/ai/chat/route.js")
+  handler satisfies RouteHandlerConfig<"/api/ai/chat">
+}
+
+// Validate ../../src/app/api/sdn/auto-tunnel/route.ts
+{
+  const handler = {} as typeof import("../../src/app/api/sdn/auto-tunnel/route.js")
+  handler satisfies RouteHandlerConfig<"/api/sdn/auto-tunnel">
+}
+
 // Validate ../../src/app/api/sdn/route.ts
 {
   const handler = {} as typeof import("../../src/app/api/sdn/route.js")

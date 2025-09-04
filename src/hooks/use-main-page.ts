@@ -285,7 +285,7 @@ export function useMainPage(initialServers: PlainServer[], initialTunnels: Plain
   };
 
   useEffect(() => {
-    if (activeTab !== 'single' && activeTab !== 'combined' && activeTab !== 'netmaker' && activeTab !== 'servers') {
+    if (activeTab !== 'single' && activeTab !== 'combined' && activeTab !== 'netmaker' && activeTab !== 'settings') {
       setSelectedServers([]);
     }
   }, [activeTab]);

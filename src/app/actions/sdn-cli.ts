@@ -85,6 +85,56 @@ function generateDefaultConfig(vpnType: string): any {
   }
 }
 
+// Built-in SDN Commands
+export const SDN_BUILTIN_COMMANDS = {
+  // Network Management
+  'init': () => 'network deploy --topology=mesh --auto-config=true',
+  'status': () => 'network status && node list && flow list',
+  'reset': () => 'flow delete --all && network deploy --minimal=true',
+  'optimize': () => 'path optimize && flow cleanup --unused=true',
+  
+  // Security Commands
+  'secure': (ip?: string) => `flow add --match=ip_src=${ip || 'any'} --action=encrypt --priority=1000`,
+  'block': (ip: string) => `flow add --match=ip_src=${ip} --action=drop --priority=2000`,
+  'allow': (ip: string) => `flow add --match=ip_src=${ip} --action=forward --priority=500`,
+  'firewall': () => 'flow add --match=any --action=controller --priority=100',
+  
+  // Tunnel Operations
+  'connect': (remote: string, type = 'vxlan') => `tunnel create --type=${type} --remote=${remote} --auto-route=true`,
+  'disconnect': (tunnel: string) => `tunnel delete ${tunnel} --cleanup=true`,
+  'bridge': (node1: string, node2: string) => `path install ${node1} ${node2} --bidirectional=true`,
+  
+  // Monitoring & Debug
+  'monitor': () => 'network stats --live=true --interval=5s',
+  'trace': (src: string, dst: string) => `path find ${src} ${dst} --detailed=true`,
+  'debug': () => 'network topology --verbose=true && flow list --debug=true',
+  'health': () => 'node status --all=true && path optimize --check-only=true',
+  
+  // Quick Deployments
+  'mesh': () => 'network deploy --topology=mesh --nodes=all --auto-peer=true',
+  'star': (controller?: string) => `network deploy --topology=star --controller=${controller || 'auto'}`,
+  'ring': () => 'network deploy --topology=ring --redundancy=true',
+  
+  // Emergency Commands
+  'emergency': () => 'flow add --match=any --action=controller --priority=9999',
+  'isolate': (node: string) => `flow add --match=node=${node} --action=drop --priority=8000`,
+  'restore': () => 'flow delete --emergency=true && network deploy --restore=true',
+  
+  // Performance
+  'boost': () => 'path optimize --aggressive=true && flow cleanup --optimize=true',
+  'balance': () => 'path install --load-balance=true --all-paths=true',
+  'qos': (priority: string) => `flow modify --all=true --qos=${priority}`,
+};
+
+// Execute built-in command
+export function executeBuiltinCommand(command: string, ...args: string[]): string {
+  const cmd = SDN_BUILTIN_COMMANDS[command as keyof typeof SDN_BUILTIN_COMMANDS];
+  if (!cmd) {
+    throw new Error(`Unknown built-in command: ${command}`);
+  }
+  return typeof cmd === 'function' ? cmd(...args) : cmd;
+}
+
 // Predefined CLI commands for common operations
 export const SDN_CLI_COMMANDS = {
   // Network-wide operations

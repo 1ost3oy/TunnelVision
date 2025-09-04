@@ -94,17 +94,16 @@ export function TunnelList({
         <CardHeader>
           <div className="flex items-center gap-2">
             <div className="relative flex items-center gap-2">
-              {/* Inactive Tunnel Network */}
-              <div className="flex items-center space-x-2">
-                <div className="w-3 h-3 border-2 border-gray-500 rounded-full animate-pulse-inactive"></div>
-                <div className="w-8 h-0.5 bg-gradient-to-r from-gray-500 to-gray-400 animate-pulse-slow"></div>
-                <div className="w-3 h-3 border-2 border-gray-400 rounded-full animate-pulse-inactive"></div>
+              {/* Inactive Tunnel Animation */}
+              <div className="flex items-center opacity-50">
+                <div className="w-3 h-3 bg-gray-500 rounded-full"></div>
+                <div className="w-20 h-0.5 bg-gray-600 mx-2"></div>
+                <div className="w-3 h-3 bg-gray-500 rounded-full"></div>
               </div>
-              {/* Inactive Status Indicator */}
-              <div className="relative">
-                <div className="w-2 h-2 bg-gray-500 rounded-full animate-pulse-slow"></div>
-              </div>
+              
+              <IconActiveTunnel className="w-5 h-5 text-muted-foreground" />
             </div>
+            <CardTitle>Active Tunnels</CardTitle>
           </div>
           <CardDescription>
             List of currently configured tunnels.
@@ -125,18 +124,18 @@ export function TunnelList({
       <CardHeader>
         <div className="flex items-center gap-2">
           <div className="relative flex items-center gap-2">
-            {/* Animated Tunnel Network */}
-            <div className="flex items-center space-x-2">
-              <div className="w-3 h-3 border-2 border-green-500 rounded-full animate-pulse-node"></div>
-              <div className="w-8 h-0.5 bg-gradient-to-r from-green-500 to-blue-500 animate-pulse"></div>
-              <div className="w-3 h-3 border-2 border-blue-500 rounded-full animate-pulse-node-delay"></div>
+            {/* Tunnel Connection Animation */}
+            <div className="flex items-center">
+              <div className="w-3 h-3 bg-cyan-400 rounded-full"></div>
+              <div className="relative w-20 h-0.5 bg-gray-600 mx-2">
+                <div className="absolute top-0 left-0 w-3 h-3 bg-purple-400 rounded-full -translate-y-1 animate-move-right"></div>
+              </div>
+              <div className="w-3 h-3 bg-purple-400 rounded-full"></div>
             </div>
-            {/* Connection Status Indicator */}
-            <div className="relative">
-              <div className="w-2 h-2 bg-green-400 rounded-full animate-ping"></div>
-              <div className="absolute top-0 left-0 w-2 h-2 bg-green-400 rounded-full"></div>
-            </div>
+            
+            <IconActiveTunnel className="w-5 h-5 text-primary" />
           </div>
+          <CardTitle>Active Tunnels</CardTitle>
         </div>
         <CardDescription>List of currently configured tunnels.</CardDescription>
       </CardHeader>

@@ -1,3 +1,4 @@
 {
+  "/api/sdn/auto-tunnel/route": "app/api/sdn/auto-tunnel/route.js",
   "/page": "app/page.js"
 }

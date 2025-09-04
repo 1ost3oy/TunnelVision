@@ -24,6 +24,7 @@ import {
     IconBrain,
     IconContext
 } from '@/components/common/abstract-icons';
+import { InlineAIChat } from '@/components/common/inline-ai-chat';
 import { useToast } from '@/hooks/use-toast';
 
 export function NetmakerTab({ 
@@ -136,13 +137,21 @@ export function NetmakerTab({
     return (
         <Card>
             <CardHeader>
-                <div className='flex items-center gap-2'>
-                    <IconNetmaker className="h-6 w-6 text-green-400" />
-                    <CardTitle>SDN</CardTitle>
+                <div className="flex items-center justify-between">
+                    <div>
+                        <div className='flex items-center gap-2'>
+                            <IconNetmaker className="h-6 w-6 text-green-400" />
+                            <CardTitle>SDN</CardTitle>
+                        </div>
+                        <CardDescription>
+                            Software-Defined Networking - Network control separated from hardware, managed centrally via software layer. Select one server as controller.
+                        </CardDescription>
+                    </div>
+                    <InlineAIChat 
+                        servers={selectedServers}
+                        context="Netmaker & SDN: Help with software-defined networking, controller setup, and network optimization"
+                    />
                 </div>
-                <CardDescription>
-                    Software-Defined Networking - Network control separated from hardware, managed centrally via software layer. Select one server as controller.
-                </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
                 <Card>

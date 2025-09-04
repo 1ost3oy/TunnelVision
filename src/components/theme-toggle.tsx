@@ -17,9 +17,11 @@ export function ThemeToggle() {
     
     if (shouldBeDark) {
       document.documentElement.classList.add('dark');
+      document.body.classList.add('dark');
       setIsDark(true);
     } else {
       document.documentElement.classList.remove('dark');
+      document.body.classList.remove('dark');
       setIsDark(false);
     }
   }, []);
@@ -30,8 +32,10 @@ export function ThemeToggle() {
     
     if (newTheme === 'dark') {
       document.documentElement.classList.add('dark');
+      document.body.classList.add('dark');
     } else {
       document.documentElement.classList.remove('dark');
+      document.body.classList.remove('dark');
     }
     
     setIsDark(!isDark);

@@ -71,10 +71,22 @@ const config: Config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        "move-right": {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(80px)" },
+        },
+        "pulse-delay": {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0.5" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "move-right": "move-right 6s ease-in-out infinite",
+        "move-right-delay": "move-right 6s ease-in-out infinite 0.2s",
+        "move-right-delay2": "move-right 6s ease-in-out infinite 0.4s",
+        "pulse-delay": "pulse-delay 2s ease-in-out infinite 0.5s",
       },
     },
   },

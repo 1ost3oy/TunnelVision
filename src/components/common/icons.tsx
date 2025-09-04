@@ -13,12 +13,12 @@ export const Logo = ({className}: {className?: string}) => (
     </svg>
 );
 
-export const AnimatedArrows = ({className}: {className?: string}) => (
+export const AnimatedArrows = ({className, onUpClick, onDownClick}: {className?: string, onUpClick?: () => void, onDownClick?: () => void}) => (
     <div className={`relative ${className}`}>
         <style>
             {`
-                .arrow-up { animation: bounce-up 2s ease-in-out infinite; }
-                .arrow-down { animation: bounce-down 2s ease-in-out infinite; animation-delay: 1s; }
+                .arrow-up { animation: bounce-up 2s ease-in-out infinite; cursor: pointer; }
+                .arrow-down { animation: bounce-down 2s ease-in-out infinite; animation-delay: 1s; cursor: pointer; }
                 @keyframes bounce-up {
                     0%, 100% { transform: translateY(0); opacity: 0.6; }
                     50% { transform: translateY(-5px); opacity: 1; }
@@ -29,13 +29,13 @@ export const AnimatedArrows = ({className}: {className?: string}) => (
                 }
             `}
         </style>
-        <svg className="arrow-up absolute" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50">
+        <svg className="arrow-up absolute" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" onClick={onUpClick}>
             <g fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
                 <path stroke="#00d4e8" d="M25 43.75V6.25"/>
                 <path stroke="#ff0de0" d="M31.25 12.5L25 6.25l-6.25 6.25"/>
             </g>
         </svg>
-        <svg className="arrow-down absolute" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50">
+        <svg className="arrow-down absolute" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" onClick={onDownClick}>
             <g fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
                 <path stroke="#ff379c" d="M25 6.25v37.5"/>
                 <path stroke="#00d4e8" d="M18.75 37.5L25 43.75l6.25-6.25"/>

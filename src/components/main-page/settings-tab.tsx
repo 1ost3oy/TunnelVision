@@ -26,7 +26,17 @@ type SettingsState = {
     geminiApiKey: string;
 };
 
-export function SettingsTab() {
+import { AIDashboard } from './ai-dashboard';
+import { InlineAIChat } from '@/components/common/inline-ai-chat';
+import type { Server, Tunnel, LogEntry } from '@/lib/types';
+
+type SettingsTabProps = {
+    servers?: Server[];
+    tunnels?: Tunnel[];
+    logs?: LogEntry[];
+};
+
+export function SettingsTab({ servers = [], tunnels = [], logs = [] }: SettingsTabProps = {}) {
     const [settings, setSettings] = useState<SettingsState>({ mongodbUri: '', apiKey: '', geminiApiKey: '' });
     const [isPending, startTransition] = useTransition();
     const [isFetching, startFetching] = useTransition();
@@ -89,10 +99,22 @@ export function SettingsTab() {
     }
 
     return (
-        <Card>
+        <div className="space-y-6">
+            <AIDashboard servers={servers} tunnels={tunnels} logs={logs} />
+            <Card>
             <CardHeader>
-                <CardTitle>Application Settings</CardTitle>
-                <CardDescription>Manage your application-wide settings here. Changes are saved to the `.env` file.</CardDescription>
+                <div className="flex items-center justify-between">
+                    <div>
+                        <CardTitle>Application Settings</CardTitle>
+                        <CardDescription>Manage your application-wide settings here. Changes are saved to the `.env` file.</CardDescription>
+                    </div>
+                    <InlineAIChat 
+                        servers={servers}
+                        tunnels={tunnels}
+                        logs={logs}
+                        context="Settings & Configuration: Help with system configuration, API keys, and troubleshooting"
+                    />
+                </div>
             </CardHeader>
             <CardContent className="space-y-6">
                 <div className="space-y-2">
@@ -163,5 +185,6 @@ export function SettingsTab() {
                 </Button>
             </CardFooter>
         </Card>
+        </div>
     );
 }

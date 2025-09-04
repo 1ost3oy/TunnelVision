@@ -244,16 +244,28 @@ export function CombinedTunnelTab({ selectedServers, setLogs, isPending, startTr
                                 </CardHeader>
                             </Card>
                             <div className="flex items-center">
-                                <AnimatedArrows className="w-12 h-12 cursor-pointer" onClick={() => {
-                                    const serverIndex = selectedServers.findIndex(s => s.id === server.id);
-                                    if (index > 0) onMoveServer(serverIndex, 'up');
-                                    if (index < selectedServers.length - 1) onMoveServer(serverIndex, 'down');
-                                }} />
+                                <AnimatedArrows 
+                                    className="w-12 h-12" 
+                                    onUpClick={() => {
+                                        if (index > 0) {
+                                            const serverIndex = selectedServers.findIndex(s => s.id === server.id);
+                                            onMoveServer(serverIndex, 'up');
+                                        }
+                                    }}
+                                    onDownClick={() => {
+                                        if (index < selectedServers.length - 1) {
+                                            const serverIndex = selectedServers.findIndex(s => s.id === server.id);
+                                            onMoveServer(serverIndex, 'down');
+                                        }
+                                    }}
+                                />
                             </div>
                         </div>
                     ))}
                 </div>
-            ) : (
+            ) 
+            : 
+            (
                 <Alert>
                 <div className="flex items-center gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 50 50"><g fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"><path stroke="#02ee9d" d="M6.25 12.5v25L25 25z"/><path stroke="#00fffc" d="M43.75 25L25 37.5v-25z"/></g></svg>

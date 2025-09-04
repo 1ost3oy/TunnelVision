@@ -20,3 +20,9 @@ export async function getTunnelsCollection(): Promise<Collection<Tunnel>> {
     const db = await getDb();
     return db.collection<Tunnel>('tunnels');
 }
+
+// اضافه شدن برای نگهداری تنظیمات عمومی مانند پیکربندی اتو-تانل
+export async function getSettingsCollection(): Promise<Collection<any>> {
+    const db = await getDb();
+    return db.collection('settings');
+}

@@ -75,10 +75,10 @@ export function NetmakerTab({
             const result = await response.json();
             
             if (result.success) {
-                setLogs(prev => [...prev, 
+                setLogs((prev: LogEntry[]) => [...prev, 
                     { type: 'success', message: '[SDN] Network deployed successfully' },
                     ...result.results.map((r: any) => ({ 
-                        type: r.status === 'deployed' ? 'success' : 'error', 
+                        type: r.status === 'deployed' ? 'success' as const : 'error' as const, 
                         message: `[${r.node}] ${r.status}` 
                     }))
                 ]);
@@ -91,7 +91,7 @@ export function NetmakerTab({
                 throw new Error(result.error);
             }
         } catch (error: any) {
-            setLogs(prev => [...prev, { type: 'error', message: `[SDN] Error: ${error.message}` }]);
+            setLogs((prev: LogEntry[]) => [...prev, { type: 'error', message: `[SDN] Error: ${error.message}` }]);
             toast({
                 variant: 'destructive',
                 title: 'Error',
@@ -116,7 +116,7 @@ export function NetmakerTab({
         try {
             setLogs([{ type: 'info', message: 'AI analyzing network requirements...' }]);
             await new Promise(resolve => setTimeout(resolve, 2000));
-            setLogs(prev => [...prev, { type: 'success', message: 'AI determined optimal network configuration.' }]);
+            setLogs((prev: LogEntry[]) => [...prev, { type: 'success', message: 'AI determined optimal network configuration.' }]);
             
             toast({
                 title: 'AI Network Management',

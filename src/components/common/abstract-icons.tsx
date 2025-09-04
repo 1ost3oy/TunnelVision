@@ -408,4 +408,13 @@ export const IconApiSecretKey = ({ className }: { className?: string }) => (
     </svg>
 );
 
+export const IconServerManager = ({ className }: { className?: string }) => (
+    <svg className={cn("w-6 h-6", className)} viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
+            <path stroke="hsl(var(--primary))" d="M8.333 14.583h33.334v6.25H8.333zm0 12.5h33.334v6.25H8.333zm0 12.5h33.334v6.25H8.333z"/>
+            <path stroke="hsl(var(--secondary))" d="M12.5 17.708h2.083m4.167 0h2.083m-8.333 12.5h2.083m4.167 0h2.083m-8.333 12.5h2.083m4.167 0h2.083"/>
+        </g>
+    </svg>
+);
+
     

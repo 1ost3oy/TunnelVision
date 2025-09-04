@@ -12,6 +12,7 @@ import {
 } from '@/components/common/abstract-icons';
 import { AnimatedArrows } from '@/components/common/icons';
 import { PingStatus } from './ui-helpers';
+import { InlineAIChat } from '@/components/common/inline-ai-chat';
 
 import type { Server, Tunnel } from '@/lib/types';
 
@@ -213,11 +214,9 @@ function ServerItem({
       </Label>
       <div className="flex items-center">
         <AnimatedArrows 
-          className="w-12 h-12 cursor-pointer" 
-          onClick={() => {
-            if (originalIndex > 0) onMoveServer(originalIndex, 'up');
-            if (originalIndex < serversLength - 1) onMoveServer(originalIndex, 'down');
-          }}
+          className="w-12 h-12" 
+          onUpClick={() => originalIndex > 0 && onMoveServer(originalIndex, 'up')}
+          onDownClick={() => originalIndex < serversLength - 1 && onMoveServer(originalIndex, 'down')}
         />
       </div>
 
@@ -328,6 +327,10 @@ export function ServerListTab({
                             <IconAddServer className="h-6 w-6" />
                         )}
                     </Button>
+                    <InlineAIChat 
+                        servers={servers}
+                        context="Server Management: Help with server configuration, troubleshooting, and optimization"
+                    />
                 </div>
             </div>
             <ScrollArea className="h-96 pr-4">

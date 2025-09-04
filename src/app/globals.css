@@ -108,17 +108,17 @@
   }
   
   .animate-move-right {
-    animation: move-right 2s ease-in-out infinite;
+    animation: move-right 6s ease-in-out infinite;
   }
   
   .animate-move-right-delay {
-    animation: move-right 2s ease-in-out infinite;
-    animation-delay: 0.7s;
+    animation: move-right 6s ease-in-out infinite;
+    animation-delay: 2.1s;
   }
   
   .animate-move-right-delay2 {
-    animation: move-right 2s ease-in-out infinite;
-    animation-delay: 1.4s;
+    animation: move-right 6s ease-in-out infinite;
+    animation-delay: 4.2s;
   }
   
   .animate-pulse-delay {
@@ -190,7 +190,7 @@
     opacity: 1;
   }
   100% {
-    transform: translateX(180px);
+    transform: translateX(360px);
     opacity: 0;
   }
 }
@@ -259,3 +259,73 @@
     opacity: 0.3;
   }
 }
+
+/* تغییر: تم روشن و تاریک را از هم متمایز می‌کنیم تا سوییچ تم اثرگذار باشد */
+@layer base {
+  :root {
+    /* Light Theme (روشن) */
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    /* حفظ رنگ‌های برند اما مناسب تم روشن */
+    --primary: 207 82% 66%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 286 60% 67%;
+    --secondary-foreground: 222.2 84% 4.9%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 72.2% 50.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+
+    --radius: 0.5rem;
+  }
+}
+
+/* Dark Theme (تیره) — مقادیر سابق را حفظ می‌کنیم */
+@layer base {
+  .dark {
+    --background: 220 13% 18%;
+    --foreground: 219 14% 71%;
+
+    --card: 220 17% 14%;
+    --card-foreground: 219 14% 71%;
+    --popover: 220 17% 14%;
+    --popover-foreground: 219 14% 71%;
+
+    --primary: 207 82% 66%;
+    --primary-foreground: 220 13% 18%;
+
+    --secondary: 286 60% 67%;
+    --secondary-foreground: 220 13% 18%;
+
+    --muted: 219 14% 20%;
+    --muted-foreground: 220 6% 53%;
+
+    --accent: 95 38% 62%;
+    --accent-foreground: 220 13% 18%;
+
+    --destructive: 355 65% 65%;
+    --destructive-foreground: 219 14% 71%;
+
+    --border: 221 13% 28%;
+    --input: 221 13% 28%;
+    --ring: 207 82% 66%;
+  }
+}
+
+/* سایر بخش‌ها بدون تغییر باقی می‌مانند */

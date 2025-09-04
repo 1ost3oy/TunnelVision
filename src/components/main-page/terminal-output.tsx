@@ -13,6 +13,7 @@ import {
 import { useToast } from '@/hooks/use-toast';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/starwind/card';
 import { Button } from '@/components/starwind/button';
+import { Progress } from '@/components/starwind/progress';
 import { ScrollArea } from '@/components/ui/scroll-area';
 
 import type { LogEntry } from '@/lib/types';
@@ -32,6 +33,10 @@ export function TerminalOutput({
   logs: LogEntry[];
   isPending: boolean;
 }) {
+  const getProgressValue = () => {
+    if (!isPending) return logs.length > 0 ? 100 : 0;
+    return Math.min((logs.length * 20), 80);
+  };
   const { toast } = useToast();
   const copyToClipboard = () => {
     const logText = logs
@@ -84,9 +89,24 @@ export function TerminalOutput({
         <CardDescription>
           Real-time output from the server operations.
         </CardDescription>
+        {(isPending || logs.length > 0) && (
+          <div className="mt-2">
+            <Progress value={getProgressValue()} className="w-full" />
+            <div className="text-xs text-muted-foreground mt-1">
+              {isPending ? 'Processing...' : 'Complete'} ({logs.length} operations)
+            </div>
+          </div>
+        )}
       </CardHeader>
       <CardContent>
-        <ScrollArea className="h-96 w-full rounded-md border bg-black/50 p-4 font-mono text-sm">
+        <div className="relative">
+          {/* Progress Bar Animation as Background Layer */}
+          <div className="absolute inset-0 opacity-30 pointer-events-none flex items-center justify-center">
+            <div className="w-64 h-2 bg-gray-700 rounded-full overflow-hidden">
+              <div className="h-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full animate-move-right"></div>
+            </div>
+          </div>
+        <ScrollArea className="h-[calc(100vh-300px)] min-h-[300px] w-full rounded-md border bg-black/50 p-4 font-mono text-sm relative z-10">
           {isPending && logs.length === 0 && (
             <div className="flex items-center justify-center h-full">
               <IconInProgress className="h-8 w-8 animate-spin text-primary" />
@@ -112,6 +132,7 @@ export function TerminalOutput({
             </div>
           )}
         </ScrollArea>
+        </div>
       </CardContent>
     </Card>
   );

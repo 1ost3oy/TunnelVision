@@ -8,6 +8,13 @@ const nextConfig: NextConfig = {
     optimizeCss: true,
     optimizePackageImports: ['@/components', '@/lib'],
   },
+  // Origins مجاز در حالت توسعه برای دسترسی بین-مبدا به منابع dev server
+  allowedDevOrigins: [
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
+    // اضافه: آی‌پی لوکال شما که هشدار از آن گزارش شد
+    'http://192.168.1.3:3000'
+  ],
   // فشردهسازی بهتر
   compress: true,
   // کش کردن بهتر
